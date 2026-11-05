@@ -41,7 +41,7 @@ jobs:
           php-version: '8.5'
           extensions: pdo_mysql, intl, bcmath, sqlite3
           coverage: none
-      - uses: actions/cache@v4
+      - uses: actions/cache@v6
         with:
           path: ~/.composer/cache
           key: composer-${{ hashFiles('api/composer.lock') }}
