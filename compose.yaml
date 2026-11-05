@@ -1,0 +1,43 @@
+name: hautpres
+
+services:
+  mysql:
+    image: docker.io/library/mysql:8.4
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: hautpres
+      MYSQL_USER: hautpres
+      MYSQL_PASSWORD: hautpres
+    ports:
+      - '${HAUTPRES_MYSQL_PORT:-3306}:3306'
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost', '-uroot', '-proot']
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  mailpit:
+    image: docker.io/axllent/mailpit:latest
+    ports:
+      - '${HAUTPRES_SMTP_PORT:-1026}:1025'
+      - '${HAUTPRES_MAILPIT_PORT:-8026}:8025'
+
+  api:
+    profiles: ['api']
+    build: ./api
+    working_dir: /app
+    volumes:
+      - ./api:/app
+    ports:
+      - '${HAUTPRES_API_PORT:-8000}:8000'
+    environment:
+      DB_HOST: mysql
+      MAIL_HOST: mailpit
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+volumes:
+  mysql-data:

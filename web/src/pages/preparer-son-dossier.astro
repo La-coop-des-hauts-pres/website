@@ -1,0 +1,20 @@
+---
+import { fr } from '@/i18n/fr';
+import Base from '@/layouts/Base.astro';
+
+const t = fr.application;
+---
+<Base fullWidth hasChrome={false} isIndexable={false} title={t.title} description={t.intro} themeColor="#efa194">
+  <div class="application-page">
+    <a href="/">← {t.back}</a>
+    <h1>{t.title}</h1>
+    <p>{t.intro}</p>
+    <p>{t.listIntro}</p>
+    <ul>{t.items.map((item) => <li>{item}</li>)}</ul>
+    <p>{t.note}</p>
+    <p>{t.share}</p>
+    <p>{t.gathering}</p>
+    <p>{t.place}</p>
+    <a href={`mailto:${fr.home.email}`}>{t.contact} ↗</a>
+  </div>
+</Base>

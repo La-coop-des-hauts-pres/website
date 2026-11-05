@@ -1,0 +1,21 @@
+---
+interface Props {
+  class?: string;
+  variant?: number;
+  thoughts?: boolean;
+}
+const { class: className, variant = 0, thoughts = false } = Astro.props;
+---
+<svg class:list={['walking-person', className, `walking-person-${variant % 3}`]} viewBox="0 0 64 84" fill="none" aria-hidden="true" focusable="false">
+  {thoughts && <g class="garden-thought" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    {variant % 3 === 0 ? <path d="m37-18 2 7 8 2-7 3-3 8-2-8-8-3 8-2Z" /> : variant % 3 === 1 ? <path d="M35 1c-5-5-12-10-10-16 2-5 8-5 10 0 4-7 11-4 11 1S40-3 35 1Z" /> : <path d="M24-3c-6-1-6-9 0-10 0-8 12-11 15-3 8-3 13 10 4 12Zm3 8 1 1" />}
+  </g>}
+  <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M24 13c1-6 6-10 12-9 6 0 10 4 10 10s-5 10-11 10c-6-1-11-5-11-11Z" fill="currentColor" stroke-width="3" />
+    <path d="M34 25c-2 9-3 19-2 29" stroke-width="5" />
+    <g class="walking-arm walking-limb-front"><path d="M33 32c-4 3-11 8-16 7" stroke-width="5" /></g>
+    <g class="walking-arm walking-limb-back"><path d="M34 32c5 3 10 8 16 7" stroke-width="5" /></g>
+    <g class="walking-leg walking-limb-back"><path d="M32 53c-3 9-8 17-15 23" stroke-width="5" /></g>
+    <g class="walking-leg walking-limb-front"><path d="M33 54c3 8 8 16 15 21" stroke-width="5" /></g>
+  </g>
+</svg>

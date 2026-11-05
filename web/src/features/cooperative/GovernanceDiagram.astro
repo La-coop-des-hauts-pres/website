@@ -1,0 +1,51 @@
+---
+import { css } from 'styled-system/css';
+
+const arrowStyle = css({
+  '@media (prefers-reduced-motion: no-preference)': {
+    animationName: 'drawLine',
+    animationDuration: '1.2s',
+    animationTimingFunction: 'standard',
+    animationFillMode: 'both',
+  },
+});
+const boxes = [
+  { y: 4, lines: ['Sociétaires', 'une voix chacun · cinq collèges'] },
+  { y: 44, lines: ['Assemblée générale', 'les grandes décisions'] },
+  { y: 84, lines: ['Directoire', 'dirige et administre, de façon collégiale'] },
+  { y: 124, lines: ['Un président', 'parmi les membres, sans voix prépondérante'] },
+];
+---
+
+<svg viewBox="0 0 220 168" width="100%" role="img" aria-labelledby="governance-title governance-desc">
+  <title id="governance-title">Organisation de la gouvernance</title>
+  <desc id="governance-desc">
+    Les sociétaires votent en assemblée générale, qui nomme le Directoire. Un des membres est président, sans voix prépondérante.
+  </desc>
+  <defs>
+    <marker id="governance-arrow" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L6 3 L0 6 z" fill="currentColor" />
+    </marker>
+  </defs>
+  {
+    boxes.map((box, index) => (
+      <g>
+        <rect x="10" y={box.y} width="200" height="32" rx="4" fill="none" stroke="currentColor" />
+        <text x="110" y={box.y + 14} text-anchor="middle" font-size="9" font-weight="700" fill="currentColor">{box.lines[0]}</text>
+        <text x="110" y={box.y + 26} text-anchor="middle" font-size="7" fill="currentColor">{box.lines[1]}</text>
+        {index < boxes.length - 1 && (
+          <path
+            class={arrowStyle}
+            style={`animation-delay:${index * 0.4}s`}
+            d={`M110 ${box.y + 32} L110 ${box.y + 44}`}
+            pathLength="1"
+            stroke-dasharray="1"
+            stroke="currentColor"
+            fill="none"
+            marker-end="url(#governance-arrow)"
+          />
+        )}
+      </g>
+    ))
+  }
+</svg>

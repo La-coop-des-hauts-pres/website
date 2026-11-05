@@ -1,0 +1,102 @@
+---
+import { css } from 'styled-system/css';
+
+import {
+  categories,
+  governancePrinciples,
+  limitedProfit,
+  objectives,
+  purpose,
+  socialUtility,
+  values,
+  votingColleges,
+  votingPrinciples,
+} from '@/content/cooperative';
+import { CollegesExplorer } from '@/features/cooperative/CollegesExplorer';
+import GovernanceDiagram from '@/features/cooperative/GovernanceDiagram.astro';
+import { VoteSimulator } from '@/features/cooperative/VoteSimulator';
+import { fr } from '@/i18n/fr';
+import Base from '@/layouts/Base.astro';
+
+const t = fr.cooperative;
+const stack = css({ display: 'flex', flexDirection: 'column', gap: '12' });
+const group = css({ display: 'flex', flexDirection: 'column', gap: '4' });
+const anchors = [
+  ['raison-d-etre', t.purpose],
+  ['objectifs', t.objectives],
+  ['ouverte', t.open],
+  ['vote', t.voting],
+  ['gouvernance', t.governance],
+  ['lucrativite', t.limitedProfit],
+] as const;
+---
+
+<Base title={t.title} description={t.description}>
+  <div class={stack}>
+    <header class={group}>
+      <h1>{t.title}</h1>
+      <p>{t.lede}</p>
+      <p><small>{t.notice}</small></p>
+    </header>
+
+    <nav aria-label={t.toc}>
+      <h2>{t.toc}</h2>
+      <ol>
+        {anchors.map(([id, label]) => <li><a href={`#${id}`}>{label}</a></li>)}
+      </ol>
+    </nav>
+
+    <section id="raison-d-etre" aria-labelledby="raison-d-etre-titre" class={group}>
+      <h2 id="raison-d-etre-titre">{t.purpose}</h2>
+      <p>{purpose}</p>
+      <p>{socialUtility}</p>
+      <h3>{t.values}</h3>
+      <ul>
+        {values.map((value) => <li>{value.name}</li>)}
+      </ul>
+    </section>
+
+    <section id="objectifs" aria-labelledby="objectifs-titre" class={group}>
+      <h2 id="objectifs-titre">{t.objectives}</h2>
+      <ul>
+        {objectives.map((objective) => (
+          <li><strong>{objective.title}</strong> — {objective.text}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section id="ouverte" aria-labelledby="ouverte-titre" class={group}>
+      <h2 id="ouverte-titre">{t.open}</h2>
+      <p>Cinq catégories de sociétaires coopèrent : chacune a sa place dans le projet.</p>
+      <ul>
+        {categories.map((category) => (
+          <li><strong>{category.name}</strong> — {category.text}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section id="vote" aria-labelledby="vote-titre" class={group}>
+      <h2 id="vote-titre">{t.voting}</h2>
+      <ul>
+        {votingPrinciples.map((principle) => <li>{principle}</li>)}
+      </ul>
+      <CollegesExplorer client:visible colleges={votingColleges} />
+      <VoteSimulator client:visible colleges={votingColleges} />
+    </section>
+
+    <section id="gouvernance" aria-labelledby="gouvernance-titre" class={group}>
+      <h2 id="gouvernance-titre">{t.governance}</h2>
+      <GovernanceDiagram />
+      <ul>
+        {governancePrinciples.map((principle) => <li>{principle}</li>)}
+      </ul>
+    </section>
+
+    <section id="lucrativite" aria-labelledby="lucrativite-titre" class={group}>
+      <h2 id="lucrativite-titre">{t.limitedProfit}</h2>
+      <ul>
+        {limitedProfit.map((rule) => <li>{rule}</li>)}
+      </ul>
+    </section>
+  </div>
+</Base>

@@ -1,0 +1,20 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+
+parameters:
+    level: max
+    paths:
+        - app
+        - bootstrap
+        - config
+        - database/factories
+        - database/seeders
+        - routes
+        - tests
+    tmpDir: storage/framework/phpstan
+    treatPhpDocTypesAsCertain: false
+    checkOctaneCompatibility: true
+    ignoreErrors:
+        -
+            message: '#rtrim expects string#'
+            path: config/filesystems.php

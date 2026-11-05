@@ -1,0 +1,60 @@
+# ScrumIA composition. Describes the project and its tooling, never its state.
+project:
+  name: "hautpres-website"
+  repo: "tibs245/hautpres-website"
+
+modules:
+  "tibs245/scrumia:scrumia-specs":
+    params:
+      root: "features"
+      strates: [business, app]
+
+  "tibs245/scrumia:scrumia-teams": {}
+
+  "tibs245/scrumia:scrumia-discovery": {}
+
+  "tibs245/scrumia:scrumia-design":
+    params:
+      root: "design"
+      remote: none
+
+  "tibs245/scrumia:scrumia-rules": {}
+
+apps:
+  - name: web
+    description: "Site vitrine commercial — Astro statique, îlots SolidJS, Zag/Ark UI, PandaCSS sur les jetons de design/"
+    spec_root: "web"
+    path: web
+    type: frontend
+    modules:
+      "tibs245/scrumia:scrumia-impl-solidjs": {}
+      "tibs245/scrumia:scrumia-html-css": {}
+      "tibs245/scrumia:scrumia-solid-principles": {}
+      "tibs245/scrumia:scrumia-tdd":
+        params:
+          levels:
+            unit: { command: "cd web && pnpm test" }
+
+  - name: api
+    description: "API Laravel (PHP 8.5, MySQL) — dossiers structurés : bénévolat, adhésions ; RGPD"
+    spec_root: "api"
+    path: api
+    modules:
+      "tibs245/scrumia:scrumia-solid-principles": {}
+      "tibs245/scrumia:scrumia-tdd":
+        params:
+          levels:
+            unit: { command: "make api-quality" }
+
+settings:
+  team:
+    roles:
+      - name: manager
+        enabled: true
+      - name: business
+        enabled: true
+      - name: tech
+        enabled: true
+      - name: designer
+        enabled: true
+        from: scrumia-design

@@ -1,0 +1,26 @@
+---
+import { fr } from '@/i18n/fr';
+import { organizationJsonLd, type PageSeo, resolveSeo } from '@/lib/seo';
+
+type Props = Omit<PageSeo, 'path'>;
+
+const props: Props = Astro.props;
+const origin = Astro.site ?? new URL('http://localhost:4321');
+const site = { ...fr.site, origin };
+const seo = resolveSeo(site, { ...props, path: Astro.url.pathname });
+const isIndexable = props.isIndexable !== false;
+---
+
+<title>{seo.title}</title>
+<meta name="description" content={seo.description} />
+<meta name="robots" content={seo.robots} />
+<link rel="canonical" href={seo.canonicalUrl} />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:locale" content="fr_FR" />
+<meta property="og:title" content={seo.title} />
+<meta property="og:description" content={seo.description} />
+<meta property="og:url" content={seo.canonicalUrl} />
+{seo.imageUrl && <meta property="og:image" content={seo.imageUrl} />}
+<meta name="twitter:card" content={seo.imageUrl ? 'summary_large_image' : 'summary'} />
+{isIndexable && <script type="application/ld+json" set:html={JSON.stringify(organizationJsonLd(site))} />}

@@ -1,0 +1,698 @@
+@import "@design/tokens.css";
+@layer reset, base, tokens, recipes, utilities;
+
+@layer base {
+  html {
+    color-scheme: light;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    margin: 0;
+    background: var(--surface);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: var(--text-md);
+    line-height: var(--leading-body);
+  }
+
+  :focus-visible {
+    outline: var(--focus-width) solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+}
+
+.identity-page {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  background: var(--identity-paper);
+  color: var(--identity-ink);
+  padding-inline: var(--identity-gutter);
+}
+.identity-stage {
+  display: grid;
+  place-items: center;
+  flex: 1;
+  padding-block: var(--space-8);
+}
+.identity-mark {
+  width: var(--identity-mark-width);
+  aspect-ratio: 1;
+  background: currentColor;
+  mask: url("/identite/carotte-portique.png") center / contain no-repeat;
+  -webkit-mask: url("/identite/carotte-portique.png") center / contain no-repeat;
+}
+.identity-footer {
+  min-height: var(--identity-footer-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding-block: var(--space-4);
+  font-size: var(--identity-type-size);
+  line-height: var(--identity-line-height);
+  letter-spacing: var(--identity-tracking);
+}
+.identity-footer nav {
+  display: flex;
+  gap: var(--space-8);
+}
+.identity-footer a {
+  color: inherit;
+  text-decoration: none;
+  padding-block: var(--space-3);
+}
+.identity-footer a:hover {
+  text-decoration: underline;
+  text-underline-offset: var(--space-1);
+}
+.identity-page :focus-visible {
+  outline-color: var(--identity-ink);
+  outline-offset: var(--identity-focus-offset);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .identity-mark {
+    transform: translate(var(--drift-x, 0px), var(--drift-y, 0px)) rotate(var(--drift-angle, 0deg));
+    transition: transform var(--identity-duration) var(--easing-standard);
+  }
+}
+@media (max-width: 40rem) {
+  .identity-mark {
+    width: var(--identity-mobile-mark-width);
+  }
+  .identity-footer {
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-2);
+    text-align: center;
+  }
+  .identity-stage {
+    padding-block: var(--space-6);
+  }
+}
+
+.identity-intro-nav > a {
+  color: inherit;
+  text-decoration: none;
+  padding-block: var(--space-3);
+}
+.identity-intro-nav > a:hover {
+  text-decoration: underline;
+  text-underline-offset: var(--space-1);
+}
+.story-page {
+  background: var(--identity-paper);
+  color: var(--identity-ink);
+  padding-inline: var(--identity-gutter);
+}
+.story-inner {
+  max-width: var(--story-width);
+  margin-inline: auto;
+}
+.story-header {
+  padding-block: var(--story-space-large);
+}
+.story-label {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: var(--story-label-tracking);
+  margin-bottom: var(--space-6);
+}
+.story-header h2,
+.story-future h2 {
+  font-size: var(--story-head-size);
+  line-height: var(--story-display-leading);
+  letter-spacing: var(--story-together-tracking);
+  font-weight: 600;
+  max-width: var(--story-copy-width);
+}
+.story-header > p:last-child {
+  max-width: var(--story-copy-width);
+  font-size: var(--story-body-size);
+  margin-top: var(--space-8);
+}
+.story-timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.story-step,
+.story-land {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--story-gap);
+  padding-block: var(--space-16);
+  border-top: var(--story-border) solid currentColor;
+}
+.story-date {
+  font-size: var(--story-date-size);
+  font-weight: 600;
+  line-height: var(--story-display-leading);
+  letter-spacing: var(--story-together-tracking);
+}
+.story-step h3,
+.story-land h3 {
+  font-size: var(--story-title-size);
+  line-height: var(--leading-title);
+  font-weight: 600;
+  margin-bottom: var(--space-4);
+}
+.road-text,
+.story-land p {
+  max-width: var(--story-copy-width);
+  font-size: var(--story-body-size);
+}
+.story-land a {
+  display: inline-block;
+  margin-top: var(--space-6);
+  color: inherit;
+  font-size: var(--text-sm);
+  text-underline-offset: var(--space-1);
+}
+.story-future {
+  padding-block: var(--story-space-large);
+  border-top: var(--story-border) solid currentColor;
+}
+.story-future > p:not(.story-label, .story-together) {
+  margin-top: var(--space-8);
+  font-size: var(--story-body-size);
+}
+.story-together {
+  font-family: var(--story-together-font);
+  font-size: var(--story-together-size);
+  letter-spacing: var(--story-together-tracking);
+  line-height: var(--leading-title);
+}
+.story-more {
+  display: inline-block;
+  color: inherit;
+  margin-top: var(--space-12);
+  font-size: var(--text-sm);
+  text-underline-offset: var(--space-1);
+}
+.story-footer {
+  border-top: var(--story-border) solid currentColor;
+}
+.story-page :focus-visible {
+  outline-color: var(--identity-ink);
+  outline-offset: var(--identity-focus-offset);
+}
+@media (max-width: 40rem) {
+  .story-step,
+  .story-land {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    padding-block: var(--space-12);
+  }
+  .story-together {
+    overflow-wrap: anywhere;
+  }
+}
+
+.story-step {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: var(--road-step-height);
+  padding: var(--space-8) 0;
+  border: 0;
+}
+.road-line {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.road-line path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: var(--road-line-width);
+  stroke-dasharray: var(--road-stroke-dash);
+  stroke-linecap: round;
+}
+.story-step:nth-child(even) .road-line-desktop {
+  transform: scaleX(-1);
+}
+.road-line-mobile {
+  display: none;
+}
+.road-marker {
+  position: absolute;
+  left: var(--road-pin-left);
+  top: 50%;
+  width: var(--road-marker-size);
+  height: var(--road-marker-size);
+  transform: translate(-50%, -50%);
+  border: var(--road-marker-border) solid currentColor;
+  background: var(--identity-paper);
+  border-radius: 50%;
+}
+.story-step-current .road-marker {
+  background: var(--identity-ink);
+  box-shadow: var(--current-ring);
+}
+.story-step:nth-child(even) .road-marker {
+  left: var(--road-pin-right);
+}
+.road-content {
+  position: relative;
+  width: var(--road-content-width);
+  margin-left: auto;
+}
+.story-step:nth-child(even) .road-content {
+  margin-left: 0;
+  margin-right: auto;
+}
+.road-status {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: var(--road-status-tracking);
+  margin-bottom: var(--space-3);
+}
+.road-content .story-date {
+  font-size: var(--story-date-size);
+  font-weight: 600;
+  line-height: var(--story-display-leading);
+  letter-spacing: var(--story-together-tracking);
+  margin-bottom: var(--space-4);
+}
+.road-action,
+.visit-note a,
+.application-page a {
+  color: inherit;
+  display: inline-block;
+  margin-top: var(--space-6);
+  text-underline-offset: var(--space-1);
+}
+.visit-note {
+  padding: var(--story-space-large) 0;
+  max-width: var(--story-copy-width);
+}
+.visit-note h3 {
+  font-size: var(--story-title-size);
+  font-weight: 600;
+  margin-bottom: var(--space-4);
+}
+.visit-note p {
+  margin-top: var(--space-4);
+}
+.application-page {
+  min-height: 100svh;
+  background: var(--identity-paper);
+  color: var(--identity-ink);
+  padding: var(--application-space) var(--identity-gutter);
+}
+.application-page > * {
+  max-width: var(--application-width);
+  margin-inline: auto;
+}
+.application-page h1 {
+  margin-top: var(--space-12);
+  font-size: var(--story-head-size);
+  line-height: var(--story-display-leading);
+  letter-spacing: var(--story-together-tracking);
+}
+.application-page p,
+.application-page ul {
+  margin-top: var(--space-6);
+  font-size: var(--story-body-size);
+}
+.application-page ul {
+  padding-left: var(--space-6);
+  list-style: disc;
+}
+.application-page a {
+  display: block;
+}
+@media (max-width: 40rem) {
+  .story-step {
+    min-height: var(--road-step-height);
+    padding: var(--space-8) 0;
+  }
+  .road-line-desktop {
+    display: none;
+  }
+  .road-line-mobile {
+    display: block;
+  }
+  .road-marker,
+  .story-step:nth-child(even) .road-marker {
+    left: var(--road-pin-mobile);
+  }
+  .road-content,
+  .story-step:nth-child(even) .road-content {
+    margin-left: var(--road-mobile-left);
+    margin-right: 0;
+    width: var(--road-content-mobile-width);
+  }
+}
+
+.story-step-current .road-status {
+  display: inline-block;
+  background: var(--identity-ink);
+  color: var(--identity-paper);
+  padding: var(--current-badge-pad-block) var(--current-badge-pad-inline);
+  border-radius: var(--current-badge-radius);
+}
+.visit-note {
+  max-width: none;
+}
+.visit-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--story-gap);
+  align-items: start;
+}
+.visit-layout > div > p:first-child {
+  margin-top: 0;
+}
+.visit-hours {
+  margin-top: var(--space-8);
+}
+.visit-hours h4 {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  margin-bottom: var(--space-3);
+}
+.visit-hours dl > div {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-block: var(--space-2);
+  border-bottom: var(--story-border) solid currentColor;
+}
+.visit-figure {
+  margin: 0;
+}
+.visit-photo {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--visit-image-radius);
+  aspect-ratio: var(--visit-photo-ratio);
+  background: var(--identity-ink);
+}
+.visit-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(1);
+}
+.visit-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--identity-paper);
+  mix-blend-mode: color;
+  opacity: var(--visit-overlay-opacity);
+  pointer-events: none;
+}
+.visit-figure figcaption {
+  font-size: var(--text-xs);
+  margin-top: var(--space-2);
+}
+@media (max-width: 40rem) {
+  .visit-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.walking-person {
+  display: block;
+  width: var(--person-width);
+  height: var(--person-height);
+  overflow: visible;
+  color: inherit;
+  pointer-events: none;
+}
+.walking-person-1 {
+  --person-cycle: var(--walk-cycle-slow);
+}
+.walking-person-2 {
+  --person-cycle: var(--walk-cycle-fast);
+}
+.walking-arm {
+  transform-origin: 34px 32px;
+}
+.walking-leg {
+  transform-origin: 32px 54px;
+}
+.walking-band {
+  container-type: inline-size;
+  display: block;
+  position: relative;
+  flex-shrink: 0;
+  overflow: hidden;
+  height: var(--garden-height);
+  border-bottom: var(--story-border) solid currentColor;
+  color: var(--identity-ink);
+}
+.walking-band-bottom {
+  margin-top: var(--space-16);
+}
+.walking-garden-scenery {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.walking-garden-scenery svg {
+  position: absolute;
+  bottom: 0;
+  width: var(--garden-decoration-width);
+  height: var(--garden-decoration-height);
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.walking-garden-scenery .garden-tree {
+  left: 13%;
+}
+.walking-garden-scenery .garden-carrot-tops {
+  width: var(--space-6);
+  height: var(--space-6);
+}
+.walking-garden-scenery .garden-carrot-tops-1 {
+  width: var(--space-4);
+  height: var(--space-4);
+}
+.garden-thought {
+  opacity: 0;
+  pointer-events: none;
+}
+.garden-walker {
+  position: absolute;
+  bottom: 0;
+  left: 5%;
+}
+.garden-walker-1 {
+  left: 30%;
+  --garden-travel-duration: var(--garden-travel-slow);
+}
+.garden-walker-2 {
+  left: 57%;
+  --garden-travel-duration: var(--garden-travel-fast);
+}
+.garden-walker-3 {
+  left: 85%;
+  --garden-travel-duration: var(--garden-travel-medium);
+}
+.garden-person-figure,
+.garden-person-handle {
+  display: block;
+  transform-origin: bottom;
+}
+.garden-walker-2 .garden-person-figure {
+  scale: var(--person-scale-small);
+}
+.garden-walker-3 .garden-person-figure {
+  scale: var(--person-scale-large);
+}
+.garden-walker-1 .walking-person,
+.garden-walker-3 .walking-person {
+  transform: scaleX(-1);
+}
+.garden-person-handle {
+  position: relative;
+  min-width: var(--action-height);
+  min-height: var(--action-height);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: grab;
+  touch-action: pan-y;
+  transform: translate(var(--garden-drag-x, 0px), var(--garden-drag-y, 0px));
+}
+.garden-person-handle:active {
+  cursor: grabbing;
+}
+.garden-person-handle:focus-visible {
+  outline-color: currentColor;
+  outline-offset: calc(-1 * var(--focus-width));
+}
+.garden-walker:is(:hover, :focus-within, [data-dragging]) .walking-arm.walking-limb-front {
+  transform: rotate(var(--walk-angle));
+}
+.garden-walker:is(:hover, :focus-within, [data-dragging]) .walking-arm.walking-limb-back {
+  transform: rotate(calc(-1 * var(--walk-angle)));
+}
+.road-person {
+  position: absolute;
+  left: var(--road-pin-left);
+  top: calc(50% - var(--person-height));
+  transform: translateX(-50%);
+  color: var(--identity-ink);
+  pointer-events: none;
+}
+.road-person-1 {
+  scale: var(--person-scale-small);
+}
+.road-person-2 {
+  scale: var(--person-scale-large);
+}
+.story-step:nth-child(even) .road-person {
+  left: var(--road-pin-right);
+}
+@media (max-width: 40rem) {
+  .road-person,
+  .story-step:nth-child(even) .road-person {
+    left: var(--road-pin-mobile);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .garden-walker {
+    left: 0;
+    animation: garden-stroll var(--garden-travel-duration, var(--garden-travel-default)) linear
+      infinite;
+  }
+  .garden-walker-0 {
+    animation-delay: var(--garden-phase-one);
+  }
+  .garden-walker-1 {
+    animation-direction: reverse;
+    animation-delay: var(--garden-phase-two);
+  }
+  .garden-walker-2 {
+    animation-delay: var(--garden-phase-three);
+  }
+  .garden-walker-3 {
+    animation-direction: reverse;
+    animation-delay: var(--garden-phase-four);
+  }
+  .walking-limb-front {
+    animation: walking-limb var(--person-cycle, var(--walk-cycle)) ease-in-out infinite alternate;
+  }
+  .walking-limb-back {
+    animation: walking-limb var(--person-cycle, var(--walk-cycle)) ease-in-out infinite
+      alternate-reverse;
+  }
+  .walking-person-1 .walking-limb-front,
+  .walking-person-1 .walking-limb-back {
+    animation-delay: var(--walk-phase-one);
+  }
+  .walking-person-2 .walking-limb-front,
+  .walking-person-2 .walking-limb-back {
+    animation-delay: var(--walk-phase-two);
+  }
+  .road-person {
+    animation: road-stroll var(--person-road-duration) ease-in-out infinite alternate;
+  }
+  .garden-thought {
+    animation: garden-thought-rise var(--person-road-duration) ease-out infinite;
+  }
+  .walking-person-1 .garden-thought {
+    animation-delay: var(--walk-phase-one);
+  }
+  .walking-person-2 .garden-thought {
+    animation-delay: var(--walk-phase-two);
+  }
+  .garden-walker:is(:hover, :focus-within, [data-dragging]),
+  .garden-walker:is(:hover, :focus-within, [data-dragging]) .walking-limb-front,
+  .garden-walker:is(:hover, :focus-within, [data-dragging]) .walking-limb-back {
+    animation-play-state: paused;
+  }
+  .garden-walker:is(:hover, :focus-within, [data-dragging]) .walking-arm.walking-limb-front {
+    animation: garden-wave-left var(--garden-wave-duration) ease-in-out infinite alternate;
+  }
+  .garden-walker:is(:hover, :focus-within, [data-dragging]) .walking-arm.walking-limb-back {
+    animation: garden-wave-right var(--garden-wave-duration) ease-in-out infinite alternate;
+  }
+  .walking-band[data-sleeping] .garden-walker,
+  .walking-band[data-sleeping] .walking-limb-front,
+  .walking-band[data-sleeping] .walking-limb-back,
+  .walking-band[data-sleeping] .garden-thought {
+    animation-play-state: paused;
+  }
+  .garden-walker:has(:focus-visible) {
+    animation: none;
+    left: 30%;
+  }
+}
+@keyframes garden-stroll {
+  from {
+    transform: translateX(calc(-1 * var(--garden-entry-space)));
+  }
+  to {
+    transform: translateX(calc(100cqw + var(--garden-entry-space)));
+  }
+}
+@keyframes walking-limb {
+  from {
+    transform: rotate(calc(-1 * var(--walk-angle)));
+  }
+  to {
+    transform: rotate(var(--walk-angle));
+  }
+}
+@keyframes road-stroll {
+  from {
+    transform: translate(-50%, calc(-1 * var(--person-rise)));
+  }
+  to {
+    transform: translate(-50%, var(--person-rise));
+  }
+}
+
+@keyframes garden-wave-left {
+  from {
+    transform: rotate(calc(-1 * var(--walk-angle)));
+  }
+  to {
+    transform: rotate(calc(2 * var(--walk-angle)));
+  }
+}
+@keyframes garden-wave-right {
+  from {
+    transform: rotate(var(--walk-angle));
+  }
+  to {
+    transform: rotate(calc(-2 * var(--walk-angle)));
+  }
+}
+@keyframes garden-thought-rise {
+  0%,
+  12% {
+    opacity: 0;
+    transform: translateY(var(--space-2));
+  }
+  28%,
+  45% {
+    opacity: 1;
+  }
+  72%,
+  100% {
+    opacity: 0;
+    transform: translateY(calc(-1 * var(--space-4)));
+  }
+}
