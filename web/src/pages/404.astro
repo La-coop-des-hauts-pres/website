@@ -1,0 +1,13 @@
+---
+import { css } from 'styled-system/css';
+
+import { fr } from '@/i18n/fr';
+import Base from '@/layouts/Base.astro';
+
+const titleStyle = css({ fontSize: '2xl', fontWeight: '700', lineHeight: 'title' });
+---
+
+<Base title={fr.notFound.title} isIndexable={false}>
+  <h1 class={titleStyle}>{fr.notFound.title}</h1>
+  <p><a href="/">{fr.notFound.back}</a></p>
+</Base>

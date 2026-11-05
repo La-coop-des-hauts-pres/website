@@ -1,0 +1,152 @@
+:root {
+  --surface: #ffffff;
+  --surface-raised: #f6f6f4;
+  --surface-wash: #eeeeea;
+  --ink: #1b1b1a;
+  --ink-muted: #4a4a47;
+  --ink-quiet: #6b6b66;
+  --ink-on-accent: #ffffff;
+  --line: #d6d6d0;
+  --line-strong: #8f8f88;
+  --accent: #2f6b3a;
+  --accent-strong: #1f4d28;
+  --success: #1e7a3c;
+  --danger: #b3261e;
+  --warning: #8a5a00;
+  --focus-ring: #1a56db;
+
+  --font-body: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: var(--font-body);
+  --font-mono: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.625rem;
+  --text-2xl: 2.25rem;
+  --text-3xl: 3rem;
+  --leading-body: 1.6;
+  --leading-title: 1.2;
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --shadow-raised: 0 1px 2px rgb(0 0 0 / 0.08), 0 4px 12px rgb(0 0 0 / 0.06);
+
+  --max-width: 72rem;
+  --reading-width: 65ch;
+  --action-height: 2.75rem;
+  --focus-width: 3px;
+  --duration-quick: 150ms;
+  --easing-standard: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Point d’entrée : deux encres, issues du croquis et du prospectus. */
+:root {
+  --identity-paper: #efa194;
+  --identity-ink: #653530;
+  --identity-gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --identity-mark-width: min(80vw, 43rem, 79svh);
+  --identity-type-size: 0.75rem;
+  --identity-tracking: 0.025em;
+  --identity-footer-height: 5rem;
+  --identity-duration: 600ms;
+  --identity-focus-offset: 0.375rem;
+  --identity-line-height: 1.4;
+  --identity-mobile-mark-width: min(92vw, 38rem, 76svh);
+}
+
+:root {
+  --story-width: 68rem;
+  --story-copy-width: 42rem;
+  --story-head-size: clamp(2.75rem, 7vw, 6.5rem);
+  --story-date-size: clamp(2.5rem, 5vw, 4.5rem);
+  --story-together-size: clamp(4rem, 13vw, 12rem);
+  --story-body-size: clamp(1rem, 1.4vw, 1.2rem);
+  --story-title-size: clamp(1.6rem, 2.7vw, 2.4rem);
+  --story-space-large: clamp(5rem, 12vw, 10rem);
+  --story-gap: clamp(2rem, 6vw, 6rem);
+  --story-border: 1px;
+  --story-label-tracking: 0.16em;
+  --story-together-font: 'Chalkboard SE', 'Comic Sans MS', cursive;
+  --story-display-leading: 1.05;
+  --story-together-tracking: -0.065em;
+}
+:root {
+  --road-marker-size: 1.5rem;
+  --road-marker-border: 0.2rem;
+  --road-line-width: 3px;
+  --road-step-height: 23rem;
+  --road-content-width: 42%;
+  --road-content-mobile-width: 75%;
+  --road-mobile-left: 22%;
+  --road-margin: 12%;
+  --road-pin-left: 25%;
+  --road-pin-right: 75%;
+  --road-pin-mobile: 13%;
+  --road-stroke-dash: 8 9;
+  --road-status-tracking: 0.13em;
+  --application-width: 44rem;
+  --application-space: clamp(3rem, 8vw, 7rem);
+}
+:root {
+  --current-ring: 0 0 0 0.45rem var(--identity-paper), 0 0 0 0.58rem var(--identity-ink);
+  --current-badge-pad-block: 0.35rem;
+  --current-badge-pad-inline: 0.75rem;
+  --current-badge-radius: 999px;
+  --visit-image-radius: 1rem;
+  --visit-overlay-opacity: 0.38;
+  --visit-photo-ratio: 4 / 3;
+}
+:root {
+  --walkers-width: min(100%, 20rem);
+  --walk-cycle: 1.2s;
+  --garden-wave-duration: 0.35s;
+  --walk-travel: 9s;
+  --walk-offset: 2rem;
+  --walk-angle: 16deg;
+}
+:root {
+  --person-width: 3rem;
+  --person-height: 3.5rem;
+  --person-rise: 0.5rem;
+  --person-travel: min(60vw, 32rem);
+  --person-travel-duration: 18s;
+  --person-road-duration: 5s;
+}
+
+:root {
+  --walking-band-width: max(100vw, 48rem);
+  --walking-band-duration: 48s;
+  --walk-cycle-slow: 0.85s;
+  --walk-cycle-fast: 0.65s;
+  --walk-phase-one: -0.35s;
+  --walk-phase-two: -0.65s;
+  --person-scale-small: 0.78;
+  --person-scale-large: 1.12;
+}
+
+:root {
+  --garden-height: 5.5rem;
+  --garden-decoration-width: 2.25rem;
+  --garden-decoration-height: 3rem;
+  --garden-entry-space: 4rem;
+  --garden-travel-default: 35s;
+  --garden-travel-slow: 48s;
+  --garden-travel-fast: 28s;
+  --garden-travel-medium: 41s;
+  --garden-phase-one: -2s;
+  --garden-phase-two: -30s;
+  --garden-phase-three: -17s;
+  --garden-phase-four: -6s;
+}

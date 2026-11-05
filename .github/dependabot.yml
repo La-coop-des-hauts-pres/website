@@ -1,0 +1,15 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /web
+    schedule: { interval: weekly }
+    groups:
+      astro: { patterns: ['astro', '@astrojs/*'] }
+      panda: { patterns: ['@pandacss/*'] }
+      ark: { patterns: ['@ark-ui/*', '@zag-js/*'] }
+  - package-ecosystem: npm
+    directory: /api
+    schedule: { interval: weekly }
+  - package-ecosystem: github-actions
+    directory: /
+    schedule: { interval: monthly }

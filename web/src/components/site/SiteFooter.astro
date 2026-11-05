@@ -1,0 +1,18 @@
+---
+import { css } from 'styled-system/css';
+
+import { fr } from '@/i18n/fr';
+
+const footerStyle = css({
+  borderBlockStart: '1px solid var(--line)',
+  paddingBlock: '6',
+  paddingInline: { base: '4', md: '8' },
+  color: 'inkMuted',
+  fontSize: 'sm',
+});
+const year = new Date().getFullYear();
+---
+
+<footer class={footerStyle}>
+  <p>© {year} {fr.site.name}. {fr.footer.rights}</p>
+</footer>

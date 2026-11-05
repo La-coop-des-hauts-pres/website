@@ -1,0 +1,9 @@
+packages:
+  - .
+allowBuilds:
+  '@swc/core': true
+overrides:
+  # Lucid embarque Faker 9 (usines de test, inutilisées ici) : version corrigée forcée.
+  '@faker-js/faker': '>=10.5.0'
+# Même règle que pnpm 11 sur Plesk : refuse au lockfile tout paquet publié depuis moins de 24 h.
+minimumReleaseAge: 1440

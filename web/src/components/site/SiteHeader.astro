@@ -1,0 +1,27 @@
+---
+import { css } from 'styled-system/css';
+
+import { fr } from '@/i18n/fr';
+
+const headerStyle = css({
+  borderBlockEnd: '1px solid var(--line)',
+  paddingBlock: '4',
+  paddingInline: { base: '4', md: '8' },
+});
+const navStyle = css({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  maxWidth: 'siteMaxWidth',
+  marginInline: 'auto',
+});
+const brandStyle = css({ fontWeight: '700', fontSize: 'lg', color: 'ink', textDecoration: 'none' });
+const backStyle = css({ color: 'ink', fontSize: 'sm', paddingBlock: '3' });
+---
+
+<header class={headerStyle}>
+  <nav class={navStyle} aria-label={fr.navigation.main}>
+    <a href="/" class={brandStyle}>{fr.site.name}</a>
+    <a href="/" class={backStyle}><span aria-hidden="true">← </span>{fr.navigation.backHome}</a>
+  </nav>
+</header>

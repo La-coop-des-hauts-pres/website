@@ -1,0 +1,57 @@
+{
+  "name": "@hautpres/web",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "license": "SEE LICENSE IN ../LICENSE",
+  "engines": {
+    "node": ">=22",
+    "pnpm": ">=10"
+  },
+  "dependencies": {
+    "@ark-ui/solid": "^5.40.0",
+    "@astrojs/sitemap": "^3",
+    "@astrojs/solid-js": "^6.0.1",
+    "@fontsource-variable/inter": "^5.3.0",
+    "@zag-js/solid": "^1.47.0",
+    "astro": "^6.4.8",
+    "solid-js": "^1.9.18",
+    "uqr": "0.1.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@biomejs/biome": "^2.6.5",
+    "@pandacss/dev": "^2.5.0",
+    "@pandacss/preset-base": "^2.5.0",
+    "@solidjs/testing-library": "^0.8.10",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/user-event": "^14.6.8",
+    "@types/node": "^22.20.5",
+    "@vitest/coverage-v8": "^5.1.0",
+    "axe-core": "^4.14.0",
+    "jsdom": "^30.1.3",
+    "sharp": "^0.35.5",
+    "typescript": "^6.0.3",
+    "vite-plugin-solid": "^2.11.15",
+    "vitest": "^5.1.0"
+  },
+  "scripts": {
+    "dev": "panda codegen && astro dev",
+    "build": "panda codegen && astro check && astro build",
+    "build:deploy": "panda codegen && astro build",
+    "preview": "astro preview",
+    "prepare": "panda codegen",
+    "typecheck": "panda codegen && astro check",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint": "biome check .",
+    "format": "biome check --write .",
+    "audit:build": "node scripts/audit-built-site.mjs",
+    "tokens:studio": "panda studio",
+    "icons": "node scripts/generate-icons.mjs",
+    "fiche:locale": "node scripts/fiche-societaire.mjs",
+    "quality": "pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm audit:build"
+  },
+  "packageManager": "pnpm@11.28.11"
+}

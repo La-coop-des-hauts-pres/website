@@ -1,0 +1,16 @@
+{
+  "extends": "astro/tsconfigs/strictest",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@design/*": ["../design/*"],
+      "styled-system/*": ["./styled-system/*"]
+    },
+    "types": ["vitest/globals", "@testing-library/jest-dom"]
+  },
+  "include": ["src", "tests", "integrations", "*.config.*", ".astro/types.d.ts"],
+  "exclude": ["dist", "styled-system"]
+}

@@ -1,0 +1,124 @@
+---
+import { css } from 'styled-system/css';
+
+import maraichage from '@/assets/maraichage-hauts-pres-2023.jpg';
+import MotionControl from '@/components/site/MotionControl.astro';
+import WalkingBand from '@/components/site/WalkingBand.astro';
+import WalkingPerson from '@/components/site/WalkingPerson.astro';
+import { fr } from '@/i18n/fr';
+import Base from '@/layouts/Base.astro';
+
+import { Image } from 'astro:assets';
+
+const t = fr.home;
+const hidden = css({ srOnly: true });
+---
+<Base fullWidth hasChrome={false} themeColor="#efa194">
+  <div class="identity-page">
+    <h1 class={hidden}>{t.title}</h1>
+    <hand-drawn-mark class="identity-stage">
+      <div class="identity-mark" role="img" aria-label={t.illustrationAlt}></div>
+    </hand-drawn-mark>
+    <div class="identity-footer identity-intro-nav">
+      <p>{t.location}</p>
+      <nav aria-label={t.projectNavigation}>
+        <a href="#notre-histoire">{t.discover}<span aria-hidden="true"> ↓</span></a>
+        <a href="#venir-au-magasin">{t.joinDeadline}<span aria-hidden="true"> ↓</span></a>
+      </nav>
+    </div>
+  </div>
+  <section id="notre-histoire" class="story-page" aria-labelledby="story-title">
+    <div class="story-inner">
+      <WalkingBand position="top" />
+      <MotionControl />
+      <header class="story-header">
+        <p class="story-label">{t.story.label}</p>
+        <h2 id="story-title">{t.story.title}</h2>
+        <p>{t.story.intro}</p>
+      </header>
+      <ol class="story-timeline">
+        {t.story.steps.map((step, index) => (
+          <li class:list={["story-step", { "story-step-current": step.status === "EN CE MOMENT" }]}>
+            <svg class="road-line road-line-desktop" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M50 0 C50 25 25 25 25 50 S50 75 50 100" vector-effect="non-scaling-stroke" /></svg>
+            <svg class="road-line road-line-mobile" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M10 0 C10 25 13 25 13 50 S10 75 10 100" vector-effect="non-scaling-stroke" /></svg>
+            <span class="road-marker" aria-hidden="true"></span>
+            {[0, 1, 3, 4, 6, 7].includes(index) && <span class:list={["road-person", `road-person-${index % 3}`]} aria-hidden="true"><WalkingPerson variant={index} /></span>}
+            <div class="road-content"><p class="road-status">{step.status}</p><p class="story-date">{step.date}</p><h3>{step.title}</h3><p class="road-text">{step.text}</p>{step.action && <a class="road-action" href={step.href}>{step.action}<span aria-hidden="true"> ↘</span></a>}</div>
+          </li>
+        ))}
+      </ol>
+      <div id="venir-au-magasin" class="visit-note">
+        <p class="story-label">AVANT LE 23 NOVEMBRE</p>
+        <h3>{t.story.visitTitle}</h3>
+        <div class="visit-layout">
+          <div>
+            <p>{t.story.visitText}</p>
+            <p>{t.story.visitAddress}</p>
+            <div class="visit-hours"><h4>{t.story.hoursLabel}</h4><dl>{t.story.hours.map(({ day, time }) => <div><dt>{day}</dt><dd>{time}</dd></div>)}</dl></div>
+            <a href={t.story.visitHref}>{t.story.visitContact}<span aria-hidden="true"> ↗</span></a>
+          </div>
+          <figure class="visit-figure"><div class="visit-photo"><Image src={maraichage} alt={t.story.photoAlt} widths={[480, 720, 960, 1440]} sizes="(max-width: 40rem) 100vw, 50vw" format="webp" quality={72} loading="lazy" /></div><figcaption>{t.story.photoCredit}</figcaption></figure>
+        </div>
+      </div>
+      <div class="story-future">
+        <p class="story-label">{t.story.futureLabel}</p>
+        <h2>{t.story.future}</h2>
+        <p>{t.story.futureLine}</p>
+        <p class="story-together">{t.story.together}</p>
+        <a class="story-more" href="/la-cooperative/">{t.story.cooperativeLink}<span aria-hidden="true"> ↗</span></a>
+
+      </div>
+      <WalkingBand position="bottom" />
+      <footer class="identity-footer story-footer">
+        <p>{t.location}</p>
+        <nav aria-label={t.linksLabel}>
+          <a href="/la-cooperative/">{t.cooperativeLink}<span aria-hidden="true"> ↗</span></a>
+          <a href={`mailto:${t.email}`}>{t.contact}<span aria-hidden="true"> ↗</span></a>
+        </nav>
+      </footer>
+    </div>
+  </section>
+</Base>
+
+<script>
+  class HandDrawnMark extends HTMLElement {
+    private events?: AbortController;
+    private frame = 0;
+
+    connectedCallback() {
+      this.events?.abort();
+      this.events = new AbortController();
+      const { signal } = this.events;
+      const motion = window.matchMedia('(prefers-reduced-motion: no-preference) and (pointer: fine)');
+      const reset = () => {
+        cancelAnimationFrame(this.frame);
+        this.style.removeProperty('--drift-x');
+        this.style.removeProperty('--drift-y');
+        this.style.removeProperty('--drift-angle');
+      };
+      window.addEventListener('pointermove', (event) => {
+        if (!motion.matches || document.documentElement.dataset.motionPaused === 'true') return;
+        const x = event.clientX / window.innerWidth - 0.5;
+        const y = event.clientY / window.innerHeight - 0.5;
+        cancelAnimationFrame(this.frame);
+        this.frame = requestAnimationFrame(() => {
+          this.style.setProperty('--drift-x', `${x * 12}px`);
+          this.style.setProperty('--drift-y', `${y * 10}px`);
+          this.style.setProperty('--drift-angle', `${x * 1.4}deg`);
+        });
+      }, { passive: true, signal });
+      document.documentElement.addEventListener('pointerleave', reset, { signal });
+      window.addEventListener('blur', reset, { signal });
+      motion.addEventListener('change', reset, { signal });
+      window.addEventListener('hautspres-motion-change', reset, { signal });
+    }
+
+    disconnectedCallback() {
+      this.events?.abort();
+      cancelAnimationFrame(this.frame);
+    }
+  }
+  if (!customElements.get('hand-drawn-mark')) {
+    customElements.define('hand-drawn-mark', HandDrawnMark);
+  }
+</script>

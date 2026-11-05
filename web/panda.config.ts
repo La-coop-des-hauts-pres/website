@@ -1,0 +1,66 @@
+import { defineConfig } from '@pandacss/dev';
+
+const token = (customPropertyName: string) => ({ value: `var(--${customPropertyName})` });
+
+export default defineConfig({
+  preflight: true,
+  presets: ['@pandacss/preset-base'],
+  jsxFramework: 'solid',
+  include: ['./src/**/*.{ts,tsx,astro}'],
+  exclude: [],
+  outdir: 'styled-system',
+  theme: {
+    keyframes: { drawLine: { from: { strokeDashoffset: '1' }, to: { strokeDashoffset: '0' } } },
+    breakpoints: { sm: '40rem', md: '48rem', lg: '64rem', xl: '80rem' },
+    tokens: {
+      colors: {
+        surface: token('surface'),
+        surfaceRaised: token('surface-raised'),
+        surfaceWash: token('surface-wash'),
+        ink: token('ink'),
+        inkMuted: token('ink-muted'),
+        inkQuiet: token('ink-quiet'),
+        inkOnAccent: token('ink-on-accent'),
+        line: token('line'),
+        lineStrong: token('line-strong'),
+        accent: token('accent'),
+        accentStrong: token('accent-strong'),
+        success: token('success'),
+        danger: token('danger'),
+        warning: token('warning'),
+        focusRing: token('focus-ring'),
+      },
+      fonts: { body: token('font-body'), display: token('font-display'), mono: token('font-mono') },
+      spacing: {
+        '1': token('space-1'),
+        '2': token('space-2'),
+        '3': token('space-3'),
+        '4': token('space-4'),
+        '6': token('space-6'),
+        '8': token('space-8'),
+        '12': token('space-12'),
+        '16': token('space-16'),
+      },
+      sizes: {
+        siteMaxWidth: token('max-width'),
+        readingWidth: token('reading-width'),
+        action: token('action-height'),
+      },
+      fontSizes: {
+        xs: token('text-xs'),
+        sm: token('text-sm'),
+        md: token('text-md'),
+        lg: token('text-lg'),
+        xl: token('text-xl'),
+        '2xl': token('text-2xl'),
+        '3xl': token('text-3xl'),
+      },
+      lineHeights: { body: token('leading-body'), title: token('leading-title') },
+      radii: { sm: token('radius-sm'), md: token('radius-md'), lg: token('radius-lg') },
+      shadows: { raised: token('shadow-raised') },
+      borderWidths: { focus: token('focus-width') },
+      durations: { quick: token('duration-quick') },
+      easings: { standard: token('easing-standard') },
+    },
+  },
+});
