@@ -1,0 +1,79 @@
+---
+import '@fontsource-variable/inter';
+import '@/styles/global.css';
+import '@/styles/motion-control.css';
+
+import { css } from 'styled-system/css';
+
+import BeeSwarm from '@/components/site/BeeSwarm.astro';
+import MotionControl from '@/components/site/MotionControl.astro';
+import Seo from '@/components/site/Seo.astro';
+import SiteFooter from '@/components/site/SiteFooter.astro';
+import SiteHeader from '@/components/site/SiteHeader.astro';
+import ThemeControl from '@/components/site/ThemeControl.astro';
+import { fr } from '@/i18n/fr';
+import type { PageSeo } from '@/lib/seo';
+
+type Props = Omit<PageSeo, 'path'> & { readonly hasChrome?: boolean; readonly fullWidth?: boolean; readonly themeColor?: string };
+
+const { hasChrome = true, fullWidth = false, themeColor = '#ffffff', ...seo } = Astro.props;
+const mainContentId = 'main-content';
+
+const skipLinkStyle = css({
+  srOnly: true,
+  _focusVisible: {
+    position: 'fixed',
+    insetBlockStart: '2',
+    insetInlineStart: '2',
+    zIndex: '100',
+    width: 'auto',
+    height: 'auto',
+    clip: 'auto',
+    paddingBlock: '2',
+    paddingInline: '4',
+    background: 'surface',
+    color: 'accentStrong',
+  },
+});
+const mainStyle = css({
+  maxWidth: 'siteMaxWidth',
+  marginInline: 'auto',
+  paddingInline: { base: '4', md: '8' },
+  paddingBlock: '12',
+});
+---
+
+<!doctype html>
+<html lang={fr.site.locale}>
+  <head>
+    <meta charset="utf-8" />
+    <script is:inline>
+      try {
+        const theme = localStorage.getItem('hautspres-theme');
+        if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+        if (localStorage.getItem('hautspres-motion-paused') === 'true') {
+          document.documentElement.dataset.motionPaused = 'true';
+        }
+      } catch { /* La préférence reste disponible pour la page courante. */ }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content={themeColor} />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <Seo {...seo} />
+    <slot name="head" />
+  </head>
+  <body class:list={[{ 'with-site-chrome': hasChrome }]}>
+    <a href={`#${mainContentId}`} class={skipLinkStyle}>{fr.navigation.skipToContent}</a>
+    {hasChrome && <SiteHeader />}
+    <ThemeControl />
+    {hasChrome && <MotionControl />}
+    <main id={mainContentId} class={fullWidth ? undefined : mainStyle}>
+      <slot />
+    </main>
+    {hasChrome && <SiteFooter />}
+    <BeeSwarm />
+  </body>
+</html>

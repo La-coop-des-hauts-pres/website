@@ -1,0 +1,32 @@
+html[data-motion-paused="true"] {
+  scroll-behavior: auto;
+}
+
+html[data-motion-paused="true"] *,
+html[data-motion-paused="true"] *::before,
+html[data-motion-paused="true"] *::after {
+  /* biome-ignore lint/complexity/noImportantStyles: la pause doit primer sur toute animation du site. */
+  animation-play-state: paused !important;
+  /* biome-ignore lint/complexity/noImportantStyles: la pause doit aussi arrêter les transitions. */
+  transition: none !important;
+  /* biome-ignore lint/complexity/noImportantStyles: éviter le défilement animé pendant la pause. */
+  scroll-behavior: auto !important;
+}
+
+.motion-control {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: var(--space-3);
+}
+
+.motion-control button {
+  border: 0;
+  padding: var(--space-2) var(--space-3);
+  background: transparent;
+  color: var(--identity-ink);
+  font: inherit;
+  font-size: var(--text-xs);
+  text-decoration: underline;
+  text-underline-offset: var(--space-1);
+  cursor: pointer;
+}

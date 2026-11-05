@@ -1,0 +1,21 @@
+---
+interface Props {
+  class?: string;
+  variant?: number;
+  thoughts?: boolean;
+}
+const { class: className, variant = 0, thoughts = false } = Astro.props;
+---
+<svg class:list={['walking-person', className, `walking-person-${variant % 3}`]} viewBox="0 0 64 84" fill="none" aria-hidden="true" focusable="false">
+  {thoughts && <g class="garden-thought" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    {variant % 3 === 0 ? <path d="m37-18 2 7 8 2-7 3-3 8-2-8-8-3 8-2Z" /> : variant % 3 === 1 ? <path d="M35 1c-5-5-12-10-10-16 2-5 8-5 10 0 4-7 11-4 11 1S40-3 35 1Z" /> : <path d="M24-3c-6-1-6-9 0-10 0-8 12-11 15-3 8-3 13 10 4 12Zm3 8 1 1" />}
+  </g>}
+  <g fill="currentColor">
+    <circle cx="34" cy="13" r="10" />
+    <path d="M24 26 Q34 30 44 26 Q38 36 35 54 L30 54 Q29 36 24 26Z" />
+    <g class="walking-arm walking-limb-front"><path d="M27 29 Q18 29 7 17 Q14 31 25 35Z" /></g>
+    <g class="walking-arm walking-limb-back"><path d="M41 29 Q50 29 61 17 Q54 31 43 35Z" /></g>
+    <g class="walking-leg walking-limb-back"><path d="M30 51 L34 54 Q25 64 18 77 Q23 62 28 52Z" /></g>
+    <g class="walking-leg walking-limb-front"><path d="M34 51 L37 52 Q43 64 50 77 Q40 66 31 54Z" /></g>
+  </g>
+</svg>

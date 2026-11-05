@@ -1,0 +1,17 @@
+---
+interface Props { location: 'intro' | 'story' }
+const { location } = Astro.props;
+---
+<div class:list={['nature-scene', `nature-scene--${location}`]} aria-hidden="true">
+  <div class="nature-wash"></div>
+  {[0, 1, 2, 3, 4, 5, 6, 7].map((index) => (
+    <span class:list={['nature-foliage', `nature-foliage--${index}`]}>
+      <svg viewBox="0 0 130 180" fill="none" focusable="false" aria-hidden="true">
+        <g stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M13 178C22 128 39 72 91 15M29 121C16 97 17 83 23 69c17 12 22 26 16 40M42 91C33 67 40 51 49 39c11 14 12 29 2 44M57 67c2-22 13-36 27-42 4 18-2 31-18 39M22 154c-4-14-13-24-21-25M54 79c17-14 33-16 47-10-8 15-23 22-41 19M36 120c16-12 33-12 46-5-8 13-24 19-40 13" />
+          <path d="M23 69c4 17 10 28 16 40M49 39c0 16 0 29 2 44M84 25c-8 16-14 28-18 39M101 69c-14 4-27 10-41 19M82 115c-14 2-27 6-40 13" opacity=".6" />
+        </g>
+      </svg>
+    </span>
+  ))}
+</div>

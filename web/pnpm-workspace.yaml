@@ -1,0 +1,8 @@
+packages:
+  - .
+allowBuilds:
+  esbuild: true
+  sharp: true
+  '@parcel/watcher': false
+# Même règle que pnpm 11 sur Plesk : refuse au lockfile tout paquet publié depuis moins de 24 h.
+minimumReleaseAge: 1440

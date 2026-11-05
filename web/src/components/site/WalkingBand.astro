@@ -1,0 +1,73 @@
+---
+import WalkingPerson from './WalkingPerson.astro';
+
+interface Props { position: 'top' | 'bottom' }
+const { position } = Astro.props;
+---
+<walking-garden class:list={['walking-band', `walking-band-${position}`]}>
+  <div class="walking-garden-scenery" aria-hidden="true">
+    <svg aria-hidden="true" focusable="false" class="garden-tree" viewBox="0 0 48 64" fill="none"><path d="M24 62 25 28m0 18L13 35m12 1 10-10M16 39C1 38 3 24 10 20 6 8 20 3 26 10 39 2 49 16 40 25c12 12-3 22-15 15" /></svg>
+    {[22, 39, 58, 75, 91].map((position, index) => <svg aria-hidden="true" focusable="false" class:list={["garden-carrot-tops", `garden-carrot-tops-${index % 2}`]} style={`left: ${position}%`} viewBox="0 0 42 36" fill="none"><path d="M21 36C15 28 8 23 6 15c6 0 10 5 15 15C13 13 18 4 21 1c4 6 4 17 1 29 5-13 10-18 16-17-1 9-8 17-17 23Z" /></svg>)}
+  </div>
+  {[0, 1, 2, 3].map((index) => <div class:list={['garden-walker', `garden-walker-${index}`]}>
+    {index === 1 ? <button class="garden-person-handle" type="button" aria-label="Déplacer le petit personnage : flèches du clavier, ou faire glisser" data-garden-handle>
+      <WalkingPerson variant={index} thoughts />
+    </button> : <span class="garden-person-figure" aria-hidden="true"><WalkingPerson variant={index} thoughts /></span>}
+  </div>)}
+</walking-garden>
+
+<script>
+  class WalkingGarden extends HTMLElement {
+    private events?: AbortController;
+    private observer?: IntersectionObserver;
+    connectedCallback() {
+      this.events?.abort();
+      this.events = new AbortController();
+      const { signal } = this.events;
+      this.observer?.disconnect();
+      this.observer = new IntersectionObserver(([entry]) => {
+        if (entry) this.toggleAttribute('data-sleeping', !entry.isIntersecting);
+      });
+      this.observer.observe(this);
+      const handle = this.querySelector<HTMLButtonElement>('[data-garden-handle]');
+      if (!handle) return;
+      let x = 0;
+      let y = 0;
+      let drag: { id: number; x: number; y: number; originX: number; originY: number } | undefined;
+      const move = (nextX: number, nextY: number) => {
+        const limit = Math.min(64, this.clientWidth / 8);
+        x = Math.max(-limit, Math.min(limit, nextX));
+        y = Math.max(-16, Math.min(0, nextY));
+        handle.style.setProperty('--garden-drag-x', `${x}px`);
+        handle.style.setProperty('--garden-drag-y', `${y}px`);
+      };
+      const finish = (event: PointerEvent) => {
+        if (drag?.id !== event.pointerId) return;
+        drag = undefined;
+        handle.closest('.garden-walker')?.removeAttribute('data-dragging');
+        if (handle.hasPointerCapture(event.pointerId)) handle.releasePointerCapture(event.pointerId);
+      };
+      handle.addEventListener('pointerdown', (event) => {
+        if (event.button !== 0) return;
+        drag = { id: event.pointerId, x: event.clientX, y: event.clientY, originX: x, originY: y };
+        handle.setPointerCapture(event.pointerId);
+        handle.closest('.garden-walker')?.setAttribute('data-dragging', '');
+      }, { signal });
+      handle.addEventListener('pointermove', (event) => {
+        if (drag?.id !== event.pointerId) return;
+        move(drag.originX + event.clientX - drag.x, drag.originY + event.clientY - drag.y);
+      }, { signal });
+      handle.addEventListener('pointerup', finish, { signal });
+      handle.addEventListener('pointercancel', finish, { signal });
+      handle.addEventListener('lostpointercapture', finish, { signal });
+      handle.addEventListener('keydown', (event) => {
+        const offsets: Record<string, [number, number]> = { ArrowLeft: [-8, 0], ArrowRight: [8, 0], ArrowUp: [0, -8], ArrowDown: [0, 8] };
+        const offset = offsets[event.key];
+        if (offset) { event.preventDefault(); move(x + offset[0], y + offset[1]); }
+        if (event.key === 'Escape' || event.key === 'Home') { event.preventDefault(); move(0, 0); }
+      }, { signal });
+    }
+    disconnectedCallback() { this.events?.abort(); this.observer?.disconnect(); }
+  }
+  if (!customElements.get('walking-garden')) customElements.define('walking-garden', WalkingGarden);
+</script>

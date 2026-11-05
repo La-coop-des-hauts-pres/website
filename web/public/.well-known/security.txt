@@ -1,0 +1,4 @@
+Contact: mailto:thibault@kolombo.fr
+Canonical: https://lacoopdeshautspret.fr/.well-known/security.txt
+Expires: 2027-11-05T00:00:00.000Z
+Preferred-Languages: fr

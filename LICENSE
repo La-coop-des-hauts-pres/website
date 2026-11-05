@@ -1,0 +1,63 @@
+Licence de la Coop des Hauts-Prés — code source disponible, usage collectif
+
+Copyright © La Coop des Hauts-Prés. Tous droits réservés, sous les seules réserves
+accordées ci-dessous.
+
+Ce dépôt (code, textes, images, identité visuelle, documentation) appartient à
+La Coop des Hauts-Prés (« la Coop »). Il est publié pour que chacun puisse le lire,
+l'étudier et y contribuer, dans l'esprit coopératif du projet. Ce n'est pas une
+licence « open source » au sens de l'Open Source Initiative.
+
+1. Ce que vous pouvez faire
+   a. Lire, étudier et exécuter le code pour comprendre son fonctionnement ou en
+      tirer des enseignements.
+   b. Proposer des contributions (voir CONTRIBUTING.md) et en discuter.
+   c. Copier et adapter des extraits de code technique, à titre d'exemple ou
+      d'apprentissage, pour vos propres projets, en citant la Coop comme source.
+   d. Partager ce dépôt, tel quel et avec cette licence, avec toute personne.
+   e. Faire une copie (fork) sur une plateforme d'hébergement de code, afin de
+      proposer des contributions à la Coop.
+
+2. Ce que vous ne pouvez pas faire
+   a. Porter atteinte à l'image, à la réputation ou à la marque de la Coop, de ses
+      sociétaires, de ses producteurs ou de ses clients.
+   b. Utiliser le nom « La Coop des Hauts-Prés », son logo, son identité visuelle,
+      ses textes de présentation ou ses photographies d'une manière qui laisse croire
+      à une origine, un partenariat ou une approbation de la Coop. Ces éléments
+      d'identité ne sont pas couverts par la présente licence au-delà de la
+      lecture et de la contribution.
+   c. Publier ou exploiter une copie du site, ou un site dérivé, qui puisse être
+      confondu avec celui de la Coop.
+   d. Utiliser ce dépôt à des fins malveillantes : usurpation d'identité,
+      hameçonnage, collecte frauduleuse de données personnelles, désinformation,
+      harcèlement, atteinte aux systèmes de la Coop ou de tiers.
+   e. Utiliser ce dépôt dans un but commercial concurrent de la Coop, ou en tirer un
+      avantage commercial, sans accord écrit préalable.
+
+3. Données personnelles
+   Ce dépôt ne contient aucune donnée personnelle réelle et ne doit jamais en
+   contenir. Si vous en trouvez une, signalez-le sans la diffuser (voir SECURITY.md).
+
+4. Contributions
+   Toute contribution acceptée est cédée à la Coop, ou lui est concédée, pour la durée
+   légale des droits, à titre gratuit, mondial et non exclusif, avec le droit de la
+   modifier et de la diffuser sous cette licence ou sous toute autre licence
+   choisie par la Coop. La personne qui contribue conserve ses droits d'auteur et
+   le droit d'être citée. Elle garantit avoir le droit de proposer ce qu'elle envoie.
+   La Coop décide seule d'accepter ou non une contribution.
+
+5. Retrait des droits
+   Un manquement aux articles 2 ou 3 met fin immédiatement aux droits accordés
+   ci-dessus. La Coop peut, par ailleurs, retirer ces droits à une personne qui nuit
+   au projet, avec un préavis écrit raisonnable sauf cas grave.
+
+6. Absence de garantie
+   Le contenu est fourni « en l'état », sans garantie d'aucune sorte. La Coop
+   n'est pas responsable des dommages résultant de son utilisation, dans les
+   limites permises par la loi.
+
+7. Droit applicable
+   La présente licence est soumise au droit français. En cas de litige, les parties
+   chercheront d'abord une solution amiable.
+
+Contact : thibault@kolombo.fr

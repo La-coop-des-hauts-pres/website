@@ -1,0 +1,15 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+import { buttonRecipe } from './Button';
+
+type Props = Omit<HTMLAttributes<'a'>, 'href'> & {
+  readonly href: string;
+  readonly variant?: 'solid' | 'outline' | 'ghost';
+};
+
+const { href, variant, class: className, ...rest } = Astro.props;
+---
+
+<!-- biome-ignore lint/a11y/useAnchorContent: the content is the slot -->
+<a {...rest} href={href} class:list={[buttonRecipe({ variant }), className]}><slot /></a>

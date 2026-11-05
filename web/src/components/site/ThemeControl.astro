@@ -1,0 +1,28 @@
+<theme-control class="theme-control">
+  <label for="theme-choice">Apparence</label>
+  <select id="theme-choice" aria-label="Choisir l’apparence du site">
+    <option value="system">Selon le système</option>
+    <option value="light">Claire</option>
+    <option value="dark">Sombre</option>
+  </select>
+</theme-control>
+
+<script>
+  class ThemeControl extends HTMLElement {
+    connectedCallback() {
+      const select = this.querySelector('select');
+      if (!select) return;
+      select.value = document.documentElement.dataset.theme || 'system';
+      select.addEventListener('change', () => {
+        const theme = select.value;
+        if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+        else delete document.documentElement.dataset.theme;
+        try {
+          if (theme === 'system') localStorage.removeItem('hautspres-theme');
+          else localStorage.setItem('hautspres-theme', theme);
+        } catch { /* Le choix reste actif pour cette page. */ }
+      });
+    }
+  }
+  if (!customElements.get('theme-control')) customElements.define('theme-control', ThemeControl);
+</script>

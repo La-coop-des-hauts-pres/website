@@ -1,0 +1,79 @@
+{
+  "name": "@hautpres/api",
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=20.6"
+  },
+  "private": true,
+  "type": "module",
+  "license": "SEE LICENSE IN ../LICENSE",
+  "scripts": {
+    "start": "node bin/server.js",
+    "db:migrate": "node ace migration:run --force",
+    "db:status": "node ace migration:status",
+    "db:rollback": "node ace migration:rollback --force",
+    "build": "node ace build",
+    "dev": "node ace serve --hmr",
+    "test": "node ace test",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "typecheck": "tsc --noEmit",
+    "audit:deps": "pnpm audit --prod --audit-level high",
+    "quality": "pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm audit:deps"
+  },
+  "imports": {
+    "#controllers/*": "./app/controllers/*.js",
+    "#exceptions/*": "./app/exceptions/*.js",
+    "#models/*": "./app/models/*.js",
+    "#mails/*": "./app/mails/*.js",
+    "#services/*": "./app/services/*.js",
+    "#listeners/*": "./app/listeners/*.js",
+    "#events/*": "./app/events/*.js",
+    "#middleware/*": "./app/middleware/*.js",
+    "#validators/*": "./app/validators/*.js",
+    "#providers/*": "./providers/*.js",
+    "#policies/*": "./app/policies/*.js",
+    "#abilities/*": "./app/abilities/*.js",
+    "#database/*": "./database/*.js",
+    "#start/*": "./start/*.js",
+    "#tests/*": "./tests/*.js",
+    "#config/*": "./config/*.js"
+  },
+  "devDependencies": {
+    "@adonisjs/assembler": "^7.8.2",
+    "@adonisjs/eslint-config": "^2.1.2",
+    "@adonisjs/prettier-config": "^1.5.0",
+    "@adonisjs/tsconfig": "^1.4.1",
+    "@japa/api-client": "^3.2.1",
+    "@japa/assert": "^4.2.0",
+    "@japa/plugin-adonisjs": "^4.0.0",
+    "@japa/runner": "^4.5.0",
+    "@swc/core": "1.11.24",
+    "@types/luxon": "^3.7.6",
+    "@types/node": "^22.20.5",
+    "eslint": "^9.39.5",
+    "hot-hook": "^0.4.0",
+    "pino-pretty": "^13.2.0",
+    "prettier": "^3.9.10",
+    "ts-node-maintained": "^10.9.6",
+    "typescript": "~5.8.3"
+  },
+  "dependencies": {
+    "@adonisjs/core": "^6.21.0",
+    "@adonisjs/cors": "^2.2.1",
+    "@adonisjs/lucid": "^21.8.2",
+    "@adonisjs/static": "^1.1.1",
+    "@vinejs/vine": "^3.0.1",
+    "luxon": "^3.7.2",
+    "mysql2": "^3.24.6",
+    "reflect-metadata": "^0.2.2"
+  },
+  "hotHook": {
+    "boundaries": [
+      "./app/controllers/**/*.ts",
+      "./app/middleware/*.ts"
+    ]
+  },
+  "prettier": "@adonisjs/prettier-config",
+  "packageManager": "pnpm@11.28.11"
+}

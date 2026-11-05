@@ -1,0 +1,20 @@
+{
+  "extraKnownMarketplaces": {
+    "scrumia": { "source": { "source": "github", "repo": "tibs245/scrumia" } }
+  },
+  "enabledPlugins": {
+    "scrumia-core@scrumia": true,
+    "scrumia-rules@scrumia": true,
+    "scrumia-specs@scrumia": true,
+    "scrumia-teams@scrumia": true,
+    "scrumia-discovery@scrumia": true,
+    "scrumia-design@scrumia": true,
+    "scrumia-impl-solidjs@scrumia": true,
+    "scrumia-html-css@scrumia": true,
+    "scrumia-tdd@scrumia": true,
+    "scrumia-solid-principles@scrumia": true
+  },
+  "permissions": {
+    "deny": ["Read(./.env)", "Read(./**/.env)", "Read(./**/*.pem)"]
+  }
+}

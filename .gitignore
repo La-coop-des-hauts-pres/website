@@ -1,0 +1,50 @@
+.DS_Store
+*.log
+.env
+.env.*
+!.env.example
+
+# JS
+node_modules/
+web/dist/
+web/.astro/
+web/styled-system/
+web/coverage/
+
+# API (AdonisJS)
+api/build/
+api/tmp/
+
+# Agents (local state)
+.claude/settings.local.json
+.claude/agent-memory/
+.claude/worktrees/
+.worktrees/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Documents juridiques : jamais versionnés (présents dans l'historique avant le 2026-11-05)
+/Statuts*.docx
+*.docx
+/.private/
+
+# Secrets, clés et sauvegardes
+*.pem
+*.key
+*.p12
+*.crt
+*.sql
+*.sqlite
+*.dump
+*.bak
+*.zip
+api/storage/*.key
+api/database/*.sqlite
+Thumbs.db
+
+!.env.test
+/tmp/
+/api/startup-error.log
