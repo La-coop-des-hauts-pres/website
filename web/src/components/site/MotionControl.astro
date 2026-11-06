@@ -1,5 +1,9 @@
 <motion-control class="motion-control">
-  <button type="button" aria-pressed="false">Mettre les animations en pause</button>
+  <button type="button" aria-label="Animations en pause" aria-pressed="false" title="Mettre les animations en pause">
+    <svg class="motion-icon motion-icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4h4v16H6zm8 0h4v16h-4z" /></svg>
+    <svg class="motion-icon motion-icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 3.5 20 12 7 20.5z" /></svg>
+    <span class="motion-text">Pause</span>
+  </button>
 </motion-control>
 
 <script>
@@ -10,7 +14,9 @@
       const update = () => {
         const paused = document.documentElement.dataset.motionPaused === 'true';
         button.setAttribute('aria-pressed', String(paused));
-        button.textContent = paused ? 'Reprendre les animations' : 'Mettre les animations en pause';
+        button.title = paused ? 'Reprendre les animations' : 'Mettre les animations en pause';
+        const label = button.querySelector('.motion-text');
+        if (label) label.textContent = paused ? 'Reprendre' : 'Pause';
       };
       update();
       button.addEventListener('click', () => {

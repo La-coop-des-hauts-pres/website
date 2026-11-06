@@ -36,17 +36,29 @@
   right: var(--identity-gutter);
   display: flex;
   align-items: center;
-  gap: var(--space-2);
+  gap: 0;
   color: var(--identity-ink);
   font-size: var(--text-xs);
 }
-.theme-control select {
+.theme-control button {
+  display: grid;
+  place-items: center;
+  width: var(--action-height);
+  height: var(--action-height);
   color: inherit;
   background: var(--identity-paper);
-  border: var(--story-border) solid currentColor;
+  border: 0;
   border-radius: var(--radius-sm);
-  padding: var(--space-2);
   font: inherit;
+  cursor: pointer;
+}
+.theme-control button[aria-pressed="true"] {
+  background: var(--identity-ink);
+  color: var(--identity-paper);
+}
+.theme-control svg {
+  width: var(--space-6);
+  height: var(--space-6);
 }
 .with-site-chrome .theme-control {
   position: static;
@@ -68,6 +80,8 @@
   display: grid;
   place-items: center;
   flex: 1;
+  width: 100%;
+  min-width: 0;
   padding-block: var(--space-8);
 }
 .identity-mark {
@@ -270,9 +284,6 @@ bee-swarm {
   bottom: 43%;
 }
 @media (max-width: 40rem) {
-  .identity-page .motion-control {
-    top: var(--space-12);
-  }
   .nature-scene--story .nature-foliage {
     width: 5rem;
   }

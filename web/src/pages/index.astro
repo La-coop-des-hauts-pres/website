@@ -92,7 +92,7 @@ const hidden = css({ srOnly: true });
       this.events?.abort();
       this.events = new AbortController();
       const { signal } = this.events;
-      const motion = window.matchMedia('(prefers-reduced-motion: no-preference) and (pointer: fine)');
+      const motion = window.matchMedia('(prefers-reduced-motion: no-preference) and (pointer: fine) and (min-width: 40.001rem)');
       const reset = () => {
         cancelAnimationFrame(this.frame);
         this.style.removeProperty('--drift-x');

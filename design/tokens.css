@@ -67,7 +67,7 @@
   --identity-duration: 600ms;
   --identity-focus-offset: 0.375rem;
   --identity-line-height: 1.4;
-  --identity-mobile-mark-width: min(92vw, 38rem, 76svh);
+  --identity-mobile-mark-width: min(100%, 38rem, 76svh);
   --nature-leaf: #6f7d52;
   --nature-bee: #9e7654;
   --nature-bee-body: #d9a13b;

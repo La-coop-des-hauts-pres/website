@@ -1,26 +1,37 @@
 <theme-control class="theme-control">
-  <label for="theme-choice">Apparence</label>
-  <select id="theme-choice" aria-label="Choisir l’apparence du site">
-    <option value="system">Selon le système</option>
-    <option value="light">Claire</option>
-    <option value="dark">Sombre</option>
-  </select>
+  <button type="button" data-theme-choice="system" aria-label="Apparence selon le système" aria-pressed="true" title="Selon le système">
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2" /><path d="M8 21h8m-4-4v4" /></svg>
+  </button>
+  <button type="button" data-theme-choice="light" aria-label="Apparence claire" aria-pressed="false" title="Clair">
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4" /><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4m0-14.2-1.4 1.4M6.3 17.7l-1.4 1.4" /></svg>
+  </button>
+  <button type="button" data-theme-choice="dark" aria-label="Apparence sombre" aria-pressed="false" title="Sombre">
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11Z" /></svg>
+  </button>
 </theme-control>
 
 <script>
   class ThemeControl extends HTMLElement {
     connectedCallback() {
-      const select = this.querySelector('select');
-      if (!select) return;
-      select.value = document.documentElement.dataset.theme || 'system';
-      select.addEventListener('change', () => {
-        const theme = select.value;
-        if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
-        else delete document.documentElement.dataset.theme;
-        try {
-          if (theme === 'system') localStorage.removeItem('hautspres-theme');
-          else localStorage.setItem('hautspres-theme', theme);
-        } catch { /* Le choix reste actif pour cette page. */ }
+      const buttons = this.querySelectorAll<HTMLButtonElement>('[data-theme-choice]');
+      const update = () => {
+        const selected = document.documentElement.dataset.theme || 'system';
+        buttons.forEach((button) => {
+          button.setAttribute('aria-pressed', String(button.dataset.themeChoice === selected));
+        });
+      };
+      update();
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const theme = button.dataset.themeChoice;
+          if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+          else delete document.documentElement.dataset.theme;
+          try {
+            if (theme === 'system') localStorage.removeItem('hautspres-theme');
+            else if (theme) localStorage.setItem('hautspres-theme', theme);
+          } catch { /* Le choix reste actif pour cette page. */ }
+          update();
+        });
       });
     }
   }
