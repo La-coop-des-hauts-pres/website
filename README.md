@@ -55,23 +55,22 @@ une seule page du document par feuille. La ligne pointillée indique où couper.
 Un seul processus Node : AdonisJS répond sur `/api/v1/…` et `/up`, et sert le site statique Astro
 déposé dans `api/public/`. Le serveur web de Plesk sert aussi directement ce dossier (racine du document).
 
-> **Node 20, temporaire.** L'hébergeur ne propose pas mieux que Node 21 (fin de vie). L'API tourne en
-> Node 20 (`api/.nvmrc`, `api/.node-version`), testée sous Node 20 en CI. Node 20 n'a plus de
-> correctifs de sécurité depuis avril 2026 : repasser en Node 24 LTS dès que l'hébergeur l'installe
-> (ces deux fichiers, `engines` de `api/package.json`, page Node.js de Plesk).
+> **Node 26 LTS** partout : `.nvmrc`, `api/.nvmrc`, `api/.node-version`, `engines` des deux
+> `package.json`, CI et page Node.js de Plesk. Changer de version = changer tous ces endroits ensemble.
 
 **API — Plesk s'en charge.** Git (branche `main`) puis configuration automatique de l'application
 Node.js : `pnpm install`, build, démarrage. Racine de l'application `api`, racine du document
-`api/public`, fichier de démarrage `startup.cjs` (charge `build/bin/server.js` ; en cas d'échec, écrit
-`api/startup-error.log`). Variables d'environnement : `NODE_ENV=production`, `HOST=0.0.0.0`,
+`api/public`, **fichier de démarrage `startup.cjs`** (charge `build/bin/server.js` ; en cas d'échec, écrit
+`api/startup-error.log`). « Auto-configure » le remplace par un `.plesk.startup.cjs` généré : le
+remettre à `startup.cjs` après chaque auto-configuration. Variables d'environnement : `NODE_ENV=production`, `HOST=0.0.0.0`,
 `LOG_LEVEL=warn`, `APP_KEY` (`node ace generate:key` en local, ne plus jamais la changer), `DB_HOST`,
 `DB_PORT`, `DB_USER`, `DB_PASSWORD`, `DB_DATABASE`.
 
 **Maintenance** (page Node.js → *Run script*) : `db:migrate` après un déploiement qui ajoute une
 migration, `db:status`, `db:rollback`. Ne pas nommer un script comme une commande de pnpm (`deploy`…).
 
-**Site — pas encore servi.** Astro exige Node ≥ 22.12, absent du serveur : Plesk ne peut pas
-construire `web/`, et `api/public/` reste vide en production tant que Node 22/24 n'est pas installé.
+**Site — pas encore servi.** Plesk ne construit que `api/` : `api/public/` reste vide en production
+tant que la construction de `web/` n'est pas branchée sur le déploiement.
 
 pnpm 11 et `minimumReleaseAge` (24 h) : le lockfile doit être produit par la version épinglée dans
 `packageManager`, sinon Plesk le refuse. Ne pas réécrire l'historique de `main` : Plesk ne sait faire

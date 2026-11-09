@@ -5,7 +5,7 @@
   "private": true,
   "license": "SEE LICENSE IN ../LICENSE",
   "engines": {
-    "node": ">=22",
+    "node": ">=26",
     "pnpm": ">=10"
   },
   "dependencies": {
@@ -26,7 +26,7 @@
     "@solidjs/testing-library": "^0.8.10",
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/user-event": "^14.6.8",
-    "@types/node": "^22.20.5",
+    "@types/node": "^26.6.6",
     "@vitest/coverage-v8": "^5.1.0",
     "axe-core": "^4.14.0",
     "jsdom": "^30.1.3",
