@@ -1,13 +1,11 @@
 // Construit le site Astro (../web) et le copie dans public/, avant `node ace build` qui copie
 // public/ dans build/. Lancé par `pnpm build`, donc par le déploiement Plesk.
 import { execFileSync } from 'node:child_process'
-import { cpSync, readdirSync, rmSync } from 'node:fs'
+import { cpSync, rmSync } from 'node:fs'
 import { join } from 'node:path'
 
 export function publishSite(distDir: string, publicDir: string) {
-  for (const entry of readdirSync(publicDir)) {
-    if (entry !== '.gitignore') rmSync(join(publicDir, entry), { recursive: true, force: true })
-  }
+  rmSync(publicDir, { recursive: true, force: true })
   cpSync(distDir, publicDir, { recursive: true })
 }
 

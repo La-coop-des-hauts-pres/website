@@ -18,6 +18,7 @@ test.group('Santé', () => {
   test('les réponses portent les en-têtes de sécurité', async ({ client, assert }) => {
     const response = await client.get('/up')
 
+    assert.equal(response.header('strict-transport-security'), 'max-age=31536000')
     assert.equal(response.header('x-content-type-options'), 'nosniff')
     assert.equal(response.header('x-frame-options'), 'SAMEORIGIN')
   })

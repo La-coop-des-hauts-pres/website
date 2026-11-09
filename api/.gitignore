@@ -9,8 +9,9 @@ tmp
 .env.production.local
 .env.development.local
 
-# Frontend assets compiled code
-public/assets
+# Site Astro copié par `pnpm build:site` et journal de démarrage Passenger
+/public/
+startup-error.log
 
 # Build tools specific
 npm-debug.log
