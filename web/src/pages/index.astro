@@ -46,7 +46,15 @@ const hidden = css({ srOnly: true });
             <svg class="road-line road-line-mobile" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M10 0 C10 25 13 25 13 50 S10 75 10 100" vector-effect="non-scaling-stroke" /></svg>
             <span class="road-marker" aria-hidden="true"></span>
             {[0, 1, 3, 4, 6, 7].includes(index) && <span class:list={["road-person", `road-person-${index % 3}`]} aria-hidden="true"><WalkingPerson variant={index} /></span>}
-            <div class="road-content"><p class="road-status">{step.status}</p><p class="story-date">{step.date}</p><h3>{step.title}</h3><p class="road-text">{step.text}</p>{step.action && <a class="road-action" href={step.href}>{step.action}<span aria-hidden="true"> ↘</span></a>}</div>
+            <div class="road-content">
+              <p class="road-status">{step.status}</p><p class="story-date">{step.date}</p><h3>{step.title}</h3><p class="road-text">{step.text}</p>
+              {'faqHref' in step ? (
+                <div class="road-actions">
+                  <a class="road-button road-button-primary" href={step.faqHref}>{t.faqLink}</a>
+                  <a class="road-button" href={step.href}>{step.action}</a>
+                </div>
+              ) : step.action && <a class="road-action" href={step.href}>{step.action}<span aria-hidden="true"> ↘</span></a>}
+            </div>
           </li>
         ))}
       </ol>
@@ -56,6 +64,7 @@ const hidden = css({ srOnly: true });
         <div class="visit-layout">
           <div>
             <p>{t.story.visitText}</p>
+            <p><a href="/faq-societaires/">{t.faqLink}<span aria-hidden="true"> ↗</span></a></p>
             <p>{t.story.visitAddress}</p>
             <div class="visit-hours"><h4>{t.story.hoursLabel}</h4><dl>{t.story.hours.map(({ day, time }) => <div><dt>{day}</dt><dd>{time}</dd></div>)}</dl></div>
             <a href={t.story.visitHref}>{t.story.visitContact}<span aria-hidden="true"> ↗</span></a>
@@ -76,6 +85,7 @@ const hidden = css({ srOnly: true });
         <p>{t.location}</p>
         <nav aria-label={t.linksLabel}>
           <a href="/la-cooperative/">{t.cooperativeLink}<span aria-hidden="true"> ↗</span></a>
+          <a href="/faq-societaires/">{t.faqLink}<span aria-hidden="true"> ↗</span></a>
           <a href={`mailto:${t.email}`}>{t.contact}<span aria-hidden="true"> ↗</span></a>
         </nav>
       </footer>

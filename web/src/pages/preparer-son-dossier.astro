@@ -9,6 +9,7 @@ const t = fr.application;
     <a href="/">← {t.back}</a>
     <h1>{t.title}</h1>
     <p>{t.intro}</p>
+    <p><a href="/faq-societaires/">{fr.home.faqLink} <span aria-hidden="true">↗</span></a></p>
     <p>{t.listIntro}</p>
     <ul>{t.items.map((item) => <li>{item}</li>)}</ul>
     <p>{t.note}</p>

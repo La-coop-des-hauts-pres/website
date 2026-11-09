@@ -19,6 +19,7 @@ export const fr = {
       'Logo de la Coop des Hauts-Prés : une carotte aux fanes découpées, quatre personnages sur la ligne du sol, un ver de terre et les mots bio, local, social.',
     location: 'Val-de-Reuil, Normandie',
     cooperativeLink: 'La coopérative',
+    faqLink: 'Pourquoi devenir sociétaire ?',
     contact: 'Nous écrire',
     email: 'mbiohp@gmail.com',
     linksLabel: 'Pour nous retrouver',
@@ -40,12 +41,20 @@ export const fr = {
           text: 'Les maraîchers bio des Hauts-Prés créent leur association pour mettre leurs moyens en commun et vendre leur production. Un magasin prend vie, un lieu de rencontre entre la terre et celles et ceux qu’elle nourrit.',
         },
         {
-          date: '2014 – 2015',
+          date: '2016',
           status: 'LE LIEU PREND VIE',
           action: '',
           href: '',
           title: 'Un lieu pour le bio',
           text: 'L’ancien bâtiment industriel des Hauts-Prés est réhabilité. Peu à peu, un lieu de travail et de rencontres se construit autour de l’agriculture biologique.',
+        },
+        {
+          date: 'Au fil des années',
+          status: 'TRANSMETTRE ET PARTAGER',
+          action: 'Découvrir Samedi au vert',
+          href: 'https://www.agglo-seine-eure.fr/samedi-au-vert/',
+          title: 'Faire découvrir le bio',
+          text: 'Avec Samedi au vert et Scolaire au vert, les Hauts-Prés accueillent petits et grands pour découvrir l’agriculture biologique et l’alimentation locale. Ces rendez-vous font vivre une démarche pédagogique ouverte au territoire.',
         },
         {
           date: '2023',
@@ -54,6 +63,14 @@ export const fr = {
           href: 'https://www.agglo-seine-eure.fr/actualites/les-hauts-pres-un-modele-unique-de-transition-ecologique/',
           title: 'La terre reprend vie',
           text: 'L’Agglo constate les effets de cette démarche : une eau de bonne qualité, des sols enrichis, de nouvelles haies et une biodiversité plus présente aux Hauts-Prés.',
+        },
+        {
+          date: '2025 – 2026',
+          status: 'UNE ALIMENTATION POUR TOUS',
+          action: 'Le récit de l’Agglo Seine-Eure',
+          href: 'https://www.agglo-seine-eure.fr/actualites/legumes-qui-font-pousser-bebes/',
+          title: 'Bien manger pour mon bébé',
+          text: 'Dans le cadre de ce dispositif de l’Agglo Seine-Eure, le magasin des Hauts-Prés accueille des futures mamans venues chercher leurs paniers de légumes bio et locaux offerts par l’Agglo. Des ateliers les accompagnent aussi vers une alimentation de qualité pour elles et leur enfant.',
         },
         {
           date: 'Début 2026',
@@ -86,6 +103,7 @@ export const fr = {
           text: 'Les inscriptions sont ouvertes pour les futurs sociétaires. Passez au magasin avant le 23 novembre 2026 : nous pourrons échanger, vous expliquer les statuts et vous accompagner pour préparer votre dossier.',
           action: 'Nous retrouver au magasin',
           href: '#venir-au-magasin',
+          faqHref: '/faq-societaires/',
         },
         {
           date: 'Fin novembre 2026',
@@ -98,8 +116,8 @@ export const fr = {
         {
           date: 'Début 2027',
           status: 'NOTRE OBJECTIF',
-          action: '',
-          href: '',
+          action: 'Pourquoi devenir sociétaire ?',
+          href: '/faq-societaires/',
           title: 'Faire naître la coopérative',
           text: 'Notre objectif : créer une société coopérative d’intérêt collectif, ou SCIC. L’objectif est de démarrer l’aventure avec les sociétaires réunis, pour décider ensemble, soutenir le magasin et faire grandir les richesses humaines et naturelles du territoire.',
         },
@@ -125,6 +143,61 @@ export const fr = {
       together: 'ensemble.',
       cooperativeLink: 'Découvrir la coopérative',
     },
+  },
+  faq: {
+    title: 'FAQ : Pourquoi être sociétaire ?',
+    description: 'Comprendre la place des sociétaires dans la Coop des Hauts-Prés.',
+    question: 'Pourquoi devenir sociétaire ?',
+    answer:
+      'Devenir sociétaire, c’est prendre part à la vie de la coopérative et à ses décisions. Les sociétaires disposent d’un droit d’information et votent en assemblée générale : une personne dispose d’une voix, les votes étant ensuite pondérés par collège. Ensemble, ils peuvent ainsi veiller à ce que le projet avance dans la direction souhaitée par le collectif et reste fidèle à ses valeurs.',
+    questions: [
+      {
+        question: 'Qui peut devenir sociétaire ?',
+        answer:
+          'Toute personne physique ou morale peut demander à devenir sociétaire. Dans un couple, chaque personne peut souscrire sa propre part et devenir sociétaire à titre individuel. Les adhésions sont validées en assemblée générale.',
+      },
+      { question: 'Combien coûte une part sociale ?', answer: 'Une part sociale coûte 30 €.' },
+      {
+        question: 'Comment devenir sociétaire ?',
+        answer:
+          'Venez vous renseigner au magasin un mercredi matin ou un samedi matin : nous vous expliquerons les démarches.',
+      },
+      {
+        question: 'Que permet le droit de vote ?',
+        answer:
+          'Il permet de participer aux grandes décisions de la coopérative en assemblée générale.',
+      },
+      {
+        question: 'Comment fonctionnent les collèges de vote ?',
+        answer:
+          'Chaque sociétaire dispose d’une voix, quel que soit son nombre de parts. Les voix sont comptées dans chaque collège, puis pondérées selon le poids de ce collège : salariés et producteurs 40 %, fournisseurs 12 %, bénéficiaires 28 %, collectivités, institutions et partenaires 10 %, et amis de la bio 10 %.',
+      },
+      {
+        question: 'Faut-il être bénévole ou participer régulièrement pour être sociétaire ?',
+        answer:
+          'Non, le bénévolat et la participation régulière aux activités du magasin ne sont pas obligatoires. Les sociétaires sont invités à participer aux assemblées générales.',
+      },
+      {
+        question: 'Peut-on acheter au magasin sans devenir sociétaire ?',
+        answer: 'Oui, le magasin est ouvert à tous, sociétaires ou non.',
+      },
+      {
+        question: 'Que devient l’argent investi dans les parts sociales ?',
+        answer:
+          'Les parts sociales constituent du capital pour la coopérative. Elles témoignent aussi du nombre de personnes qui soutiennent son projet collectif. Aucun intérêt n’est versé sur ces parts.',
+      },
+      {
+        question: 'Peut-on quitter la coopérative et récupérer sa part ?',
+        answer:
+          'Oui, un sociétaire peut demander à quitter la coopérative et le remboursement de sa part. Les modalités et le calendrier sont à confirmer auprès de la coopérative, conformément aux statuts.',
+      },
+      {
+        question:
+          'Comment la coopérative soutient-elle les producteurs et l’alimentation bio locale ?',
+        answer:
+          'Elle met en valeur les produits bio, en privilégiant ceux des Hauts-Prés et des producteurs locaux, et cherche à assurer une juste rémunération aux producteurs.',
+      },
+    ],
   },
   application: {
     title: 'Préparer son dossier',

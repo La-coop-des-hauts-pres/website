@@ -29,6 +29,11 @@
   }
 }
 
+a:hover,
+a:focus-visible {
+  text-decoration: underline;
+}
+
 .theme-control {
   position: absolute;
   z-index: 5;
@@ -63,7 +68,7 @@
 .with-site-chrome .theme-control {
   position: static;
   justify-content: flex-end;
-  padding: var(--space-3) var(--identity-gutter);
+  padding: 0;
 }
 
 .identity-page {
@@ -525,6 +530,29 @@ bee-swarm {
   display: inline-block;
   margin-top: var(--space-6);
   text-underline-offset: var(--space-1);
+}
+.road-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+.road-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--action-height);
+  padding: var(--space-2) var(--space-4);
+  border: var(--story-border) solid var(--identity-ink);
+  border-radius: var(--radius-sm);
+  color: var(--identity-ink);
+  font-weight: 600;
+  text-decoration: none;
+  text-underline-offset: var(--space-1);
+}
+.road-button-primary {
+  background: var(--identity-ink);
+  color: var(--identity-paper);
 }
 .visit-note {
   padding: var(--story-space-large) 0;

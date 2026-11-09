@@ -1,6 +1,7 @@
 ---
 import { css } from 'styled-system/css';
 
+import ThemeControl from '@/components/site/ThemeControl.astro';
 import { fr } from '@/i18n/fr';
 
 const headerStyle = css({
@@ -22,6 +23,10 @@ const backStyle = css({ color: 'ink', fontSize: 'sm', paddingBlock: '3' });
 <header class={headerStyle}>
   <nav class={navStyle} aria-label={fr.navigation.main}>
     <a href="/" class={brandStyle}>{fr.site.name}</a>
+    <ThemeControl />
+  </nav>
+  <nav class={navStyle} aria-label={fr.navigation.backHome}>
+    <span></span>
     <a href="/" class={backStyle}><span aria-hidden="true">← </span>{fr.navigation.backHome}</a>
   </nav>
 </header>

@@ -68,7 +68,7 @@ const mainStyle = css({
   <body class:list={[{ 'with-site-chrome': hasChrome }]}>
     <a href={`#${mainContentId}`} class={skipLinkStyle}>{fr.navigation.skipToContent}</a>
     {hasChrome && <SiteHeader />}
-    <ThemeControl />
+    {!hasChrome && <ThemeControl />}
     {hasChrome && <MotionControl />}
     <main id={mainContentId} class={fullWidth ? undefined : mainStyle}>
       <slot />
