@@ -12,14 +12,16 @@
     "db:migrate": "node ace migration:run --force",
     "db:status": "node ace migration:status",
     "db:rollback": "node ace migration:rollback --force",
-    "build": "node ace build",
+    "build": "pnpm build:site && pnpm build:api",
+    "build:site": "node scripts/build_site.ts",
+    "build:api": "node ace build",
     "dev": "node ace serve --hmr",
     "test": "node ace test",
     "lint": "eslint .",
     "format": "prettier --write .",
     "typecheck": "tsc --noEmit",
     "audit:deps": "pnpm audit --prod --audit-level high",
-    "quality": "pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm audit:deps"
+    "quality": "pnpm lint && pnpm typecheck && pnpm test && pnpm build:api && pnpm audit:deps"
   },
   "imports": {
     "#controllers/*": "./app/controllers/*.js",

@@ -69,8 +69,9 @@ remettre à `startup.cjs` après chaque auto-configuration. Variables d'environn
 **Maintenance** (page Node.js → *Run script*) : `db:migrate` après un déploiement qui ajoute une
 migration, `db:status`, `db:rollback`. Ne pas nommer un script comme une commande de pnpm (`deploy`…).
 
-**Site — pas encore servi.** Plesk ne construit que `api/` : `api/public/` reste vide en production
-tant que la construction de `web/` n'est pas branchée sur le déploiement.
+**Site — construit par le même `pnpm build`.** `build:site` installe et construit `web/`, puis copie
+`web/dist` dans `api/public/` ; `build:api` (`node ace build`) recopie ensuite `public/` dans `build/`.
+L'ordre compte. `quality` ne lance que `build:api`.
 
 pnpm 11 et `minimumReleaseAge` (24 h) : le lockfile doit être produit par la version épinglée dans
 `packageManager`, sinon Plesk le refuse. Ne pas réécrire l'historique de `main` : Plesk ne sait faire
