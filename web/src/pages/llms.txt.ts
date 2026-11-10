@@ -13,7 +13,7 @@ export const GET: APIRoute = ({ site }) => {
 ## Pages
 
 - [Accueil](${url('/')}) : l'histoire du projet et comment venir au magasin.
-- [La coopérative](${url('/la-cooperative/')}) : raison d'être, valeurs, catégories de sociétaires, vote et gouvernance, lucrativité limitée.
+- [Questions sur le sociétariat](${url('/faq-societaires/')}) : réponses aux questions sur la participation à la coopérative.
 
 ## Pour les agents et assistants
 

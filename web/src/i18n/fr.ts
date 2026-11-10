@@ -18,7 +18,6 @@ export const fr = {
     illustrationAlt:
       'Logo de la Coop des Hauts-Prés : une carotte aux fanes découpées, quatre personnages sur la ligne du sol, un ver de terre et les mots bio, local, social.',
     location: 'Val-de-Reuil, Normandie',
-    cooperativeLink: 'La coopérative',
     faqLink: 'Pourquoi devenir sociétaire ?',
     contact: 'Nous écrire',
     email: 'mbiohp@gmail.com',
@@ -141,7 +140,6 @@ export const fr = {
       future: 'La suite reste à écrire.',
       futureLine: 'On espère simplement l’écrire',
       together: 'ensemble.',
-      cooperativeLink: 'Découvrir la coopérative',
     },
   },
   faq: {

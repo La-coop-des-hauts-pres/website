@@ -77,14 +77,12 @@ const hidden = css({ srOnly: true });
         <h2>{t.story.future}</h2>
         <p>{t.story.futureLine}</p>
         <p class="story-together">{t.story.together}</p>
-        <a class="story-more" href="/la-cooperative/">{t.story.cooperativeLink}<span aria-hidden="true"> ↗</span></a>
 
       </div>
       <WalkingBand position="bottom" />
       <footer class="identity-footer story-footer">
         <p>{t.location}</p>
         <nav aria-label={t.linksLabel}>
-          <a href="/la-cooperative/">{t.cooperativeLink}<span aria-hidden="true"> ↗</span></a>
           <a href="/faq-societaires/">{t.faqLink}<span aria-hidden="true"> ↗</span></a>
           <a href={`mailto:${t.email}`}>{t.contact}<span aria-hidden="true"> ↗</span></a>
         </nav>
