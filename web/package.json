@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
-    "@biomejs/biome": "^2.6.5",
+    "@biomejs/biome": "^2.6.6",
     "@pandacss/dev": "^2.5.0",
     "@pandacss/preset-base": "^2.5.0",
     "@solidjs/testing-library": "^0.8.10",
